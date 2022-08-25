@@ -1,0 +1,61 @@
+server:
+  port: 8888
+
+flink:
+  # flink集群ip
+  ip: 192.168.0.130
+  port: 8081
+  # 提交的jar包位置
+  jarPath: C:\Users\hcy\IdeaProjects\flink-etl\flink-test\target\flink-test-0.0.1-SNAPSHOT.jar
+#  jarPath: D:\实验室项目\1-ETL核心改造\ETL-10-31\flink-etl\flink-test\target\flink-test-0.0.1-SNAPSHOT.jar
+  # 最大并行度
+  maxParallelism: 12
+  # 是否远程环境执行
+  isRemote: false
+#  isRemote: false
+
+input:
+  csv-path: /file/csvInput
+output:
+  csv-path: /file/csvOutput
+
+spring:
+  datasource:
+    username: root
+    password: 123123
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.0.239:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8
+    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis:
+  table:
+    auto: update
+  model:
+    pack: com.bdilab.flinketl.entity
+  database:
+    type: mysql
+
+logging:
+  level:
+    org.springframework.boot.autoconfigure: ERROR
+#    org.apache.kafka: ERROR
+
+
+#logging:
+#  level:
+#    root: warn
+#    com.bdilab.flinketl.entity: trace
+#  pattern:
+#    console: '%p%m%n'
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml, classpath*:com/gitee/sunchenbin/mybatis/actable/mapping/*/*.xml
+#  type-aliases-package: com.bdilab.flinketl.entity
+
+hive:
+  conf:
+    dir: D:\实验室项目\1-ETL核心改造\ETL-10-31\flink-etl\flink-test\src\main\resources
+
+# yaml文件路径
+#yaml-path: /root/application.yaml
+yaml-path: D:\实验室项目\1-ETL核心改造\ETL-10-31\flink-etl\flink-test\src\main\resources\application.yaml
